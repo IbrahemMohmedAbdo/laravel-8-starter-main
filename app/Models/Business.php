@@ -14,4 +14,8 @@ class Business extends Model
     {
         return $this->hasOne(Category::class);
     }
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

@@ -33,6 +33,7 @@ class UserSeeder extends Seeder
                 'email' => 'admin@email.com',
                 'email_verified_at' => now(),
                 'phone' => '01234567',
+                'role'=>'admin',
                 'password' => Hash::make('admin'),
             ],
         ]);

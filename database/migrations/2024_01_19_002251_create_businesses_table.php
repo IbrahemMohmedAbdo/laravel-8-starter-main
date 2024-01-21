@@ -17,6 +17,7 @@ class CreateBusinessesTable extends Migration
             $table->id();
             $table->string('name');
             $table->text('description');
+            $table->unsignedBigInteger('user_id')->unique(); 
             $table->timestamps();
         });
     }

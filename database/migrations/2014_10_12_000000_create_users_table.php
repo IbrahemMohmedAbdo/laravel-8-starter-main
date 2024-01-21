@@ -26,7 +26,7 @@ class CreateUsersTable extends Migration
             $table->string('phone')->nullable()->index();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->enum('role', ['admin', 'operation_merchant', 'client'])->default('client');
+            $table->enum('role', ['admin', 'operation','merchant', 'client'])->default('client');
             $table->rememberToken();
             $table->timestamp('last_login_at')->nullable();
             $table->string('last_login_ip')->nullable();
