@@ -6,7 +6,7 @@
 
       <div class="flex flex-col">
           <div class="mb-2">
-              <span class="font-bold">{{ __('Username') }}:</span> {{ $merchant->username }}
+              <span class="font-bold">{{ __('Username') }}:</span> {{ $merchant->fullname }}
           </div>
 
           <div class="mb-2">

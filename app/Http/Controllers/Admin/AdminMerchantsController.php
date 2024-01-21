@@ -3,9 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 
+use App\Models\User;
+use Ramsey\Uuid\Uuid;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\MerchantRequest;
+use App\Http\Requests\MerchantUpdateRequest;
+
 
 class AdminMerchantsController extends Controller
 {
@@ -17,7 +22,7 @@ class AdminMerchantsController extends Controller
     public function index()
     {
         //
-        $merchants = User::where('role','operation_merchant')->get();
+        $merchants = User::where('role','merchant')->get();
 
         return view('admin.merchants.index', compact('merchants'));
 
@@ -31,6 +36,7 @@ class AdminMerchantsController extends Controller
     public function create()
     {
         //
+        return view('admin.operation.merchants.create');
     }
 
     /**
@@ -39,9 +45,27 @@ class AdminMerchantsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(MerchantRequest $request)
     {
         //
+        $user = User::create([
+            'uuid' => Uuid::uuid4()->toString(),
+            'fullname' => $request->fullname,
+            'username' => $request->username,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'role'=>'merchant',
+            'password' => Hash::make($request->password),
+        ]);
+        $msgData = [
+
+            'message' => 'Account created successfully',
+        ];
+        return redirect()->route('merchants.index');
+        // if($user)
+        // {
+        //     return view('admin.merchants.index',$msgData);
+        // }
     }
 
     /**
@@ -63,9 +87,10 @@ class AdminMerchantsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $merchant)
     {
         //
+        return view('admin.operation.merchants.update',compact('merchant'));
     }
 
     /**
@@ -75,9 +100,13 @@ class AdminMerchantsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(MerchantUpdateRequest $request, User $merchant)
     {
-        //
+        dd($merchant);
+        $merchant->update($request->validated());
+
+        return redirect()->route('merchants.show', $merchant)
+            ->with('success', __('Merchant updated successfully'));
     }
 
     /**
@@ -91,4 +120,6 @@ class AdminMerchantsController extends Controller
         $merchant->delete();
         return redirect()->route('merchants.index')->with('success', 'Merchant deleted successfully');
     }
+
+
 }

@@ -26,9 +26,8 @@ Route::get('/dashboard', [DashboardController::class, 'index'])
     ->middleware(['auth','authTwoFactor'])
     ->name('dashboard');
 
-    Route::resource('admin/merchants', AdminMerchantsController::class);
-    Route::resource('admin/operation/merchants', OperationMerchantsController::class);
-
+Route::resource('admin/merchants', AdminMerchantsController::class);
+Route::resource('admin/operation', OperationMerchantsController::class);
 
 
 require __DIR__ . '/auth.php';
