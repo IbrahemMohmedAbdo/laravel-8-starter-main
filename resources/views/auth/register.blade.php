@@ -52,7 +52,7 @@
                   case 'admin':
                       $borderColorClass = 'border-green-300 focus:border-green-300 focus:ring-green-300';
                       break;
-                  case 'operation_merchant':
+                  case 'operation':
                       $borderColorClass = 'border-blue-300 focus:border-blue-300 focus:ring-blue-300';
                       break;
                   case 'client':
@@ -66,7 +66,7 @@
           <select id="user_role" name="role" required
               class="mt-1 block w-full rounded-md shadow-sm focus:ring focus:ring-opacity-50 @class([$borderColorClass])">
               <option value="admin" {{ $selectedRole == 'admin' ? 'selected' : '' }}>Admin</option>
-              <option value="operation_merchant" {{ $selectedRole == 'operation_merchant' ? 'selected' : '' }}>Operation Merchant</option>
+              <option value="operation" {{ $selectedRole == 'operation' ? 'selected' : '' }}>Operation</option>
               <option value="client" {{ $selectedRole == 'client' ? 'selected' : '' }}>Client</option>
           </select>
 

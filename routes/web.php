@@ -5,6 +5,8 @@ declare(strict_types=1);
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Admin\AdminMerchantsController;
+use App\Http\Controllers\Operation\OperationMerchantsController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,9 +26,10 @@ Route::get('/dashboard', [DashboardController::class, 'index'])
     ->middleware(['auth','authTwoFactor'])
     ->name('dashboard');
 
-
+    Route::resource('admin/merchants', AdminMerchantsController::class);
+    Route::resource('admin/operation/merchants', OperationMerchantsController::class);
 
 
 
 require __DIR__ . '/auth.php';
-Route::resource('admin/merchants', AdminMerchantsController::class);
+

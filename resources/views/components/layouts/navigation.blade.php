@@ -20,6 +20,13 @@
              Merchants
             </a>
             @endif
+
+
+            <a href="{{route('merchants.index')}}"
+              class="py-3 text-sm font-medium leading-5 capitalize text-gray-500 focus:outline-none focus:text-gray-700 focus:border-gray-300 hover:text-gray-700 hover:border-gray-300 transition duration-150 ease-in-out">
+             Merchants
+            </a>
+            @endif
           </div>
         </div>
       </div>
